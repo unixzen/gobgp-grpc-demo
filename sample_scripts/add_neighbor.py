@@ -11,6 +11,8 @@ def run(gobgpd_addr, gobgpd_port, peer_address, peer_as):
     channel = implementations.insecure_channel(gobgpd_addr, gobgpd_port)
 
     peer = gobgp_pb2.Peer()
+    peer.timers.config.hold_time = 15
+    peer.timers.config.keepalive_interval = 5
     peer.conf.neighbor_address = peer_address
     peer.conf.peer_as = peer_as
 
